@@ -1,0 +1,322 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #111;
+  height: 100%;
+  font-family: Lato, sans-serif;
+  color: #fff;
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+aside {
+  background-color: #333;
+  height: 100%;
+  width: 90%;
+}
+
+.profile-card-container {
+  background-color: #454545;
+  display: grid;
+  place-items: center;
+  height: 95px;
+}
+
+.profile-card {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.25rem;
+  column-gap: 0.8rem;
+  align-items: center;
+}
+
+.profile {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  align-self: center;
+  width: 35px;
+}
+
+.name {
+  font-size: 1.1rem;
+}
+
+.tag {
+  font-size: 0.85rem;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
+}
+
+.link {
+  width: 100%;
+  border-bottom: 1px solid #787878;
+}
+
+.link a {
+  display: block;
+  padding: 0.9rem 1.5rem;
+  font-size: 1.1rem;
+  width: 100%;
+  transition: background-color 0.14s ease-in;
+}
+
+.link a:hover {
+  background-color: #666;
+}
+
+main {
+  width: calc(100% - 220px);
+  padding-left: 3rem;
+}
+
+.top {
+  height: 95px;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+}
+
+.heading {
+  white-space: nowrap;
+}
+
+.main {
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.passwords-block {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+}
+
+.passwords-block header {
+  background-color: #646464;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 1rem;
+}
+
+.buttons-list {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.button button {
+  color: #fff;
+  background-color: #646464;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  transition: background-color 0.1s ease;
+  border-radius: 2px;
+}
+
+.plus {
+  width: 16px;
+}
+
+.add-folder {
+  width: 20px;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+/* .popup:hover::after {
+  opacity: 1;
+} */
+/* 
+button:hover {
+  background-color: #444;
+}
+
+.passwords-list {
+  min-height: 300px;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  background-color: #454545;
+}
+
+.message {
+  line-height: 2rem;
+}
+
+.icon {
+  background-color: #aaa;
+  color: #222;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1.2rem;
+}
+
+.modal-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #0007;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s linear;
+}
+
+.modal-back.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.add-password-modal {
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2.5rem;
+  gap: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 5px 3px #0005;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: transform 0.2s ease-in, opacity 0.2s ease-in;
+}
+
+.add-password-modal.active {
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 12;
+  pointer-events: all;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-block {
+  display: flex;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: border-color 0.1s linear;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 2.5rem;
+  padding-left: 1rem;
+  caret-color: #fff;
+  font-size: 1.1rem;
+  color: #fff;
+  width: 100%;
+}
+
+.input-options {
+  display: flex;
+  justify-content: flex-end;
+  align-content: stretch;
+}
+
+.input-option {
+  display: grid;
+  place-items: center;
+  padding: 0 0.5rem;
+  border-left: 1px solid #eee;
+  transition: border-left-color 0.1s linear;
+}
+
+.input-block:focus-within {
+  border-color: #17a2ff;
+}
+
+.input-block:focus-within .input-option {
+  border-left-color: #17a2ff;
+}
+
+.input-option:hover {
+  background-color: #232323;
+}
+
+.input-option:hover img {
+  filter: brightness(2);
+}
+
+.clear {
+  width: 14px;
+}
+
+.toggle-view {
+  margin-right: 10px;
+  width: 18px;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.close-modal {
+  color: #ddd;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  font-family: Lato, sans-serif;
+  cursor: pointer;
+}
+
+.password-submit {
+  border: none;
+  outline: none;
+  align-self: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.4rem 1.1rem;
+  color: #333;
+  border-radius: 3px;
+  transition: filter 0.1s linear;
+}
+
+.password-submit:hover {
+  filter: brightness(0.8);
+}  */
+

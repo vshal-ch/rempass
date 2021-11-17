@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/auth.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="stylesheet" href="./css/popup.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic"
+      rel="stylesheet"
+    />
+    <title>Login | Password manager</title>
+    <script src="./js/check.js"></script>
+    <script src="./js/instance.js" type="module"></script>
+    <script src="./js/no-acc-auth.js" type="module"></script>
+    <script src="./js/auth-page.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1 class="heading">Password Manager</h1>
+      <section class="auth-block">
+        <section class="left-side">
+          <div class="header-row">
+            <span class="form-title imp-login" data-show="login">Login</span>
+            <span class="small-line"></span>
+            <span class="form-title imp-signin other" data-show="signup"
+              >Signup</span
+            >
+          </div>
+          <div class="form-container">
+            <div class="form-block">
+              <form class="form login-form">
+                <div class="error-block">
+                  <div class="input-container" data-place="Username">
+                    <input
+                      type="text"
+                      name="login-username"
+                      id="login-username"
+                      class="input"
+                      data-required="true"
+                    />
+                    <label for="login-username">Username</label>
+                  </div>
+                  <span class="error-message"></span>
+                </div>
+                <div class="error-block">
+                  <div class="input-container" data-place="Password">
+                    <input
+                      type="password"
+                      name="login-pass"
+                      id="login-pass"
+                      class="input"
+                      data-required="true"
+                    />
+                    <label for="login-pass">Password</label>
+                  </div>
+                  <span class="error-message"></span>
+                </div>
+                <button type="submit" class="submit">LOGIN</button>
+              </form>
+              <form class="form">
+                <div class="error-block">
+                  <div class="input-container" data-place="Username">
+                    <input
+                      type="text"
+                      name="singup-username"
+                      id="singup-username"
+                      class="input"
+                      data-required="true"
+                    />
+                    <label for="singup-username">Username</label>
+                  </div>
+                  <span class="error-message"></span>
+                </div>
+                <div class="error-block">
+                  <div class="input-container" data-place="Email">
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      class="input"
+                      data-required="true"
+                    />
+                    <label for="email">Email</label>
+                  </div>
+                  <span class="error-message"></span>
+                </div>
+                <div class="error-block">
+                  <div class="input-container" data-place="Password">
+                    <input
+                      type="password"
+                      name="signup-pass"
+                      id="signup-pass"
+                      class="input"
+                      data-required="true"
+                    />
+                    <label for="signup-pass">Password</label>
+                  </div>
+                  <span class="error-message"></span>
+                </div>
+                <button type="submit" class="submit">LOGIN</button>
+              </form>
+            </div>
+          </div>
+        </section>
+        <div class="line"></div>
+        <div class="right-side">
+          <section class="login-with-block">
+            <h3 class="block-title">Login with</h3>
+            <ul class="login-services">
+              <li class="login-service">
+                <img
+                  src="./assets/google.svg"
+                  alt="login with google"
+                  class="service-img"
+                />
+              </li>
+              <li class="login-service">
+                <img
+                  src="./assets/linkedin.svg"
+                  alt="login with linkedin"
+                  class="service-img"
+                />
+              </li>
+              <li class="login-service">
+                <img
+                  src="./assets/github.svg"
+                  alt="login with github"
+                  class="service-img"
+                />
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+      <h5 class="offer-message">Use without creating account</h5>
+    </main>
+    <div class="modal-container">
+      <section class="modal confirm-modal">
+        <h3 class="modal-heading">Are you sure about that?</h3>
+        <div class="text-block">
+          <p class="text-content">
+            You can view your passwords on other devices if you have an account
+            using your login credentials.
+          </p>
+          <p class="text-content">
+            But without creating account you can only view or add passwords in
+            this device only.
+          </p>
+        </div>
+        <div class="buttons">
+          <button class="button goto-auth">Goto Signup page</button>
+          <button class="button continue">
+            <span>Continue</span
+            ><span class="no-break"
+              ><strong>without</strong> creating account</span
+            >
+          </button>
+        </div>
+      </section>
+    </div>
+    <section class="no-acc-form-container">
+      <header class="form-header">
+        <span class="icon-container">
+          <img src="./assets/arrow_back.svg" alt="go back" class="back-icon" />
+        </span>
+        <h2 class="form-heading">Set pin for additional security</h2>
+      </header>
+      <form class="no-acc-form">
+        <div class="error-block">
+          <div class="input-container with-info" data-place="Name">
+            <input
+              type="text"
+              name="refer-name"
+              id="refer-name"
+              class="input input-no-login"
+              data-required="true"
+              data-pattern="name"
+            />
+            <label class="refer-label" for="refer-name">Name</label>
+            <span
+              class="info-symbol popup"
+              data-popup="Just for showing on the screen"
+              >i</span
+            >
+          </div>
+          <span class="error-message"></span>
+        </div>
+        <div class="error-block to-be-disabled">
+          <div class="input-container with-info" data-place="Pin">
+            <input
+              type="password"
+              name="pin"
+              id="pin"
+              class="input input-no-login"
+              data-required="true"
+              data-pattern="pin"
+              maxlength="6"
+              minlength="6"
+              pattern="^[0-9][0-9]{5}$"
+              inputmode="numeric"
+            />
+            <label class="refer-label" for="pin">Pin</label>
+            <span class="toggle-view"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#cdcdcd"
+              >
+                <path
+                  d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 6c3.79 0 7.17 2.13 8.82 5.5-.59 1.22-1.42 2.27-2.41 3.12l1.41 1.41c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l1.65 1.65C10.66 6.09 11.32 6 12 6zm-1.07 1.14L13 9.21c.57.25 1.03.71 1.28 1.28l2.07 2.07c.08-.34.14-.7.14-1.07C16.5 9.01 14.48 7 12 7c-.37 0-.72.05-1.07.14zM2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.98-.29 4.32-.82l3.42 3.42 1.41-1.41L3.42 2.45 2.01 3.87zm7.5 7.5l2.61 2.61c-.04.01-.08.02-.12.02-1.38 0-2.5-1.12-2.5-2.5 0-.05.01-.08.01-.13zm-3.4-3.4l1.75 1.75c-.23.55-.36 1.15-.36 1.78 0 2.48 2.02 4.5 4.5 4.5.63 0 1.23-.13 1.77-.36l.98.98c-.88.24-1.8.38-2.75.38-3.79 0-7.17-2.13-8.82-5.5.7-1.43 1.72-2.61 2.93-3.53z"
+                />
+              </svg>
+            </span>
+          </div>
+          <span class="error-message"></span>
+        </div>
+        <div class="error-block to-be-disabled">
+          <div class="input-container with-info" data-place="Pin">
+            <input
+              type="password"
+              name="confirm-pin"
+              id="confirm-pin"
+              class="input input-no-login"
+              data-required="true"
+              data-pattern="confirm-pin"
+              minlength="6"
+              maxlength="6"
+              pattern="^[0-9][0-9]{5}$"
+              inputmode="numeric"
+            />
+            <label class="refer-label" for="confirm-pin">Confirm Pin</label>
+            <span class="toggle-view"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#cdcdcd"
+              >
+                <path
+                  d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 6c3.79 0 7.17 2.13 8.82 5.5-.59 1.22-1.42 2.27-2.41 3.12l1.41 1.41c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l1.65 1.65C10.66 6.09 11.32 6 12 6zm-1.07 1.14L13 9.21c.57.25 1.03.71 1.28 1.28l2.07 2.07c.08-.34.14-.7.14-1.07C16.5 9.01 14.48 7 12 7c-.37 0-.72.05-1.07.14zM2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.98-.29 4.32-.82l3.42 3.42 1.41-1.41L3.42 2.45 2.01 3.87zm7.5 7.5l2.61 2.61c-.04.01-.08.02-.12.02-1.38 0-2.5-1.12-2.5-2.5 0-.05.01-.08.01-.13zm-3.4-3.4l1.75 1.75c-.23.55-.36 1.15-.36 1.78 0 2.48 2.02 4.5 4.5 4.5.63 0 1.23-.13 1.77-.36l.98.98c-.88.24-1.8.38-2.75.38-3.79 0-7.17-2.13-8.82-5.5.7-1.43 1.72-2.61 2.93-3.53z"
+                />
+              </svg>
+            </span>
+          </div>
+          <span class="error-message"></span>
+        </div>
+        <p class="info-message">
+          <span class="info-symbol">i</span>
+          Please remember the Pin. If you forget it there is no way coming back.
+          If you don't want to use pin please check the below checkbox.
+        </p>
+        <div class="row">
+          <input type="checkbox" name="skip" id="skip" />
+          <label for="skip">I don't want to use pin</label>
+        </div>
+        <button type="submit" class="submit-pin disabled" disabled>
+          SUBMIT
+        </button>
+      </form>
+    </section>
+  </body>
+</html>
