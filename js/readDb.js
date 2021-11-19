@@ -3,7 +3,7 @@ import {getFirestore, doc, getDoc} from "https://www.gstatic.com/firebasejs/9.1.
 
 const db = getFirestore(app);
 
-export async function checkDb(docId){
+async function checkDb(docId){
     const docRef = doc(db,'anonymous-users',docId);
     const docSnap = await getDoc(docRef);
     if(docSnap.exists()){
@@ -14,3 +14,4 @@ export async function checkDb(docId){
     }
 }
 
+export { checkDb }

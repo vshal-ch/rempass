@@ -1,3 +1,5 @@
+import {checkDb} from './readDb.js';
+
 const addPasswordButton = document.querySelector(".add-password");
 const addPasswordModal = document.querySelector(".add-password-modal");
 const modalBack = document.querySelector(".modal-back");
@@ -7,6 +9,13 @@ const submitPassBtn = document.querySelector('.password-submit');
 const menu = document.querySelector('aside');
 const menuOpen = document.querySelector('.hamburgur');
 const menuClose = document.querySelector('.cross');
+const userName = document.querySelector('.name');
+
+( async () => {
+  let obj = JSON.parse(localStorage.getItem('accInfo'));
+  let data = await checkDb(obj.divId);
+  userName.textContent = data.name+`'s`;
+})();
 
 function openModal() {
   modalBack.classList.add("active");

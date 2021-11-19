@@ -24,7 +24,7 @@ body {
 
 aside {
   position: absolute;
-  background-color: #0005;
+  background-color: transparent;
   height: 100%;
   width: 100%;
   top: 0;
@@ -35,11 +35,12 @@ aside {
   align-items: flex-start;
   padding-right: 5px;
   gap: 5px;
-  transition: right 0.3s ease-out;
+  transition: right 0.3s ease-out, background-color 0.1s linear 0.2s;
 }
 
 aside.visible {
   right: 0;
+  background-color: #0005;
 }
 
 .cross {
@@ -185,9 +186,9 @@ main {
   height: 2px;
 }
 
-.heading {
+/* .heading {
   white-space: nowrap;
-}
+} */
 
 .main {
   display: flex;
@@ -289,6 +290,11 @@ button:hover {
   pointer-events: all;
 }
 
+.modal-back .wrapper{
+  display: grid;
+  place-items: center;
+}
+
 .add-password-modal {
   background-color: #333;
   display: flex;
@@ -299,6 +305,7 @@ button:hover {
   box-shadow: 0 4px 5px 3px #0005;
   transform: translateY(30px);
   opacity: 0;
+  max-width: 400px;
   transition: transform 0.2s ease-in, opacity 0.2s ease-in;
 }
 
@@ -406,4 +413,136 @@ form {
 
 .password-submit:hover {
   filter: brightness(0.8);
+}
+
+@media screen and (min-width:620px){
+  body {
+    background-color: #111;
+    height: 100%;
+    font-family: Lato, sans-serif;
+    color: #fff;
+    display: flex;
+    position: relative;
+  }
+  
+  aside {
+    position: static;
+    width: 320px;
+    display: block;
+    padding-right: 0;
+    transition: right 0.3s ease-out, background-color 0.1s linear 0.2s;
+    z-index: 0;
+  }
+  
+  .cross {
+    display: none;
+  }
+  
+  main {
+    width: 100%;
+  }
+  
+  .top .wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  
+  .hamburgur {
+    display: none;
+  }
+  
+  .heading {
+    white-space: nowrap;
+  }
+  
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    /* gap: 2rem; */
+  
+  }
+  
+  .passwords-block {
+    max-width: 320px;
+  }
+  .add-folder {
+    width: 20px;
+    margin-top: 3px;
+    margin-left: 3px;
+  }
+  .popup:hover::after {
+    opacity: 1;
+  }
+  button:hover {
+    background-color: #444;
+  }
+  
+  .passwords-list {
+    text-align: center;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    background-color: #454545;
+  }
+  
+  .message {
+    line-height: 2rem;
+  }
+  
+  .icon {
+    background-color: #aaa;
+    color: #222;
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    line-height: 1.2rem;
+  }
+  
+  .modal-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #0007;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s linear;
+  }
+  
+  .modal-back.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  .modal-back .wrapper{
+    display: grid;
+    place-items: center;
+  }
+  
+  .add-password-modal {
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 5px 3px #0005;
+    transform: translateY(30px);
+    opacity: 0;
+    max-width: 400px;
+    transition: transform 0.2s ease-in, opacity 0.2s ease-in;
+  }
+  
+  .add-password-modal.active {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 12;
+    pointer-events: all;
+  }
 }
