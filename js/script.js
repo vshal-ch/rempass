@@ -1,4 +1,5 @@
 import {checkDb} from './readDb.js';
+import {addPasswordHelper} from './addToDb.js'
 
 const addPasswordButton = document.querySelector(".add-password");
 const addPasswordModal = document.querySelector(".add-password-modal");
@@ -10,8 +11,8 @@ const menu = document.querySelector('aside');
 const menuOpen = document.querySelector('.hamburgur');
 const menuClose = document.querySelector('.cross');
 const userName = document.querySelector('.name');
-const openDetails = document.querySelector('.visible-part');
-const details = document.querySelector('.password');
+const openDetails = document.querySelectorAll('.visible-part');
+const details = document.querySelectorAll('.password');
 const passText = document.querySelector('.password-text');
 const copyPass = document.querySelector('.copy-action');
 
@@ -38,7 +39,15 @@ function addPassword(e) {
   let pName = addPasswordForm['platform'].value;
   let uName = addPasswordForm['username'].value;
   let pass = addPasswordForm['password'].value;
-  
+  if(pName.trim()==''||uName.trim()==''||pass.trim()==''){
+    return
+  }
+  let obj = JSON.parse(localStorage.getItem('accInfo'));
+  if(!obj){
+    return
+  }
+  let {divId} = obj
+  addPasswordHelper(divId,pName,uName,pass);
 }
 
 function openMenu(){
@@ -50,7 +59,7 @@ function closeMenu(){
 }
 
 function showDetails(){
-  details.classList.toggle('visible')
+  details[this.index].classList.toggle('visible')
 }
 
 function copyToClip(e){
@@ -58,8 +67,11 @@ function copyToClip(e){
   e.stopPropagation();
 }
 
-copyPass.addEventListener('click',copyToClip,true);
-openDetails.addEventListener('click',showDetails)
+copyPass.addEventListener('click',copyToClip);
+openDetails.forEach((item,index)=>{
+  item.index = index
+  item.addEventListener('click',showDetails);
+})
 menuOpen.addEventListener('click',openMenu);
 menuClose.addEventListener('click',closeMenu);
 addPasswordButton.addEventListener("click", openModal);

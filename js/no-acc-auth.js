@@ -47,3 +47,7 @@ function getDid() {
 }
 
 noAccForm.addEventListener("submit", createUserAnonymously);
+
+export{ 
+  auth
+}

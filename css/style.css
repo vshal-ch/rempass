@@ -103,6 +103,7 @@ aside.visible {
 
 .name {
   font-size: 1.1rem;
+  cursor: default;
 }
 
 .tag {
@@ -140,7 +141,12 @@ a {
 
 main {
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+main::-webkit-scrollbar{
+  position: absolute;
+  width: 0px;
 }
 
 .top {
@@ -254,7 +260,7 @@ button:hover {
   width: 100%;
   min-height: 250px;
   padding-bottom: 10px;
-  background-color: #777;
+  background-color: #454545;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -281,11 +287,12 @@ button:hover {
 }
 
 .password {
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #aaa;
   width: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
+  user-select: none;
 }
 
 .visible-part {
@@ -319,7 +326,7 @@ button:hover {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #444;
+  background-color: #333;
   padding: 3px;
   display: grid;
   place-items: center;
@@ -336,12 +343,20 @@ button:hover {
   max-height: 0;
   overflow: hidden;
   padding: 0 1.5rem;
-  transition: max-height 0.4s ease-out;
+  transition: max-height 0.2s linear;
 }
 
 .password.visible .hidden-part {
-  max-height: 500px;
-  transition: max-height 0.5s ease-in;
+  max-height: 100px;
+  transition: max-height 0.2s linear;
+}
+
+.down-arrow{
+  transition: transform 0.2s linear;
+}
+
+.password.visible .down-arrow{
+  transform: rotate(180deg);
 }
 
 .password-block {
@@ -513,7 +528,6 @@ form {
 @media screen and (min-width: 620px) {
   body {
     background-color: #111;
-    height: 100%;
     font-family: Lato, sans-serif;
     color: #fff;
     display: flex;
@@ -580,6 +594,17 @@ form {
     place-items: center;
     width: 100%;
     background-color: #454545;
+  }
+
+  .copy-action{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #333;
+    padding: 3px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
   }
 
   .message {
