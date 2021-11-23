@@ -1,7 +1,7 @@
 import {
   getAuth,
   signInAnonymously,
-  onAuthStateChanged,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
 import { app } from "./instance.js";
 import { addData } from "./addToDb.js";
@@ -46,8 +46,10 @@ function getDid() {
   return uid;
 }
 
-noAccForm.addEventListener("submit", createUserAnonymously);
+
+noAccForm&&noAccForm.addEventListener("submit", createUserAnonymously);
 
 export{ 
-  auth
+  auth,
+  onAuthStateChanged
 }

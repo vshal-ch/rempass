@@ -1,12 +1,12 @@
 import {checkDb} from './readDb.js';
 import {addPasswordHelper} from './addToDb.js'
+import { startPopulate } from './populator.js'
 
 const addPasswordButton = document.querySelector(".add-password");
 const addPasswordModal = document.querySelector(".add-password-modal");
 const modalBack = document.querySelector(".modal-back");
 const closeModalBtn = document.querySelector(".close-modal");
 const addPasswordForm = document.querySelector(".add-password-form");
-const submitPassBtn = document.querySelector('.password-submit');
 const menu = document.querySelector('aside');
 const menuOpen = document.querySelector('.hamburgur');
 const menuClose = document.querySelector('.cross');
@@ -15,6 +15,9 @@ const openDetails = document.querySelectorAll('.visible-part');
 const details = document.querySelectorAll('.password');
 const passText = document.querySelector('.password-text');
 const copyPass = document.querySelector('.copy-action');
+const passList = document.querySelector('.passwords-list');
+
+startPopulate(passList);
 
 ( async () => {
   let obj = JSON.parse(localStorage.getItem('accInfo'));
@@ -28,13 +31,12 @@ function openModal() {
 }
 
 function closeModal(e) {
-  e.preventDefault();
   addPasswordForm.reset();
   modalBack.classList.remove("active");
   addPasswordModal.classList.remove("active");
 }
 
-function addPassword(e) {
+async function addPassword(e) {
   e.preventDefault();
   let pName = addPasswordForm['platform'].value;
   let uName = addPasswordForm['username'].value;
@@ -47,7 +49,9 @@ function addPassword(e) {
     return
   }
   let {divId} = obj
-  addPasswordHelper(divId,pName,uName,pass);
+  let res = await addPasswordHelper(divId,pName,uName,pass);
+  console.log(res);
+  closeModal(e);
 }
 
 function openMenu(){
@@ -74,6 +78,6 @@ openDetails.forEach((item,index)=>{
 })
 menuOpen.addEventListener('click',openMenu);
 menuClose.addEventListener('click',closeMenu);
-addPasswordButton.addEventListener("click", openModal);
+addPasswordButton && addPasswordButton.addEventListener("click", openModal);
 closeModalBtn.addEventListener("click", closeModal);
 addPasswordForm.addEventListener("submit", addPassword);
