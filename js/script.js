@@ -1,6 +1,5 @@
 import {checkDb} from './readDb.js';
 import {addPasswordHelper} from './addToDb.js'
-import { startPopulate } from './populator.js'
 
 const addPasswordButton = document.querySelector(".add-password");
 const addPasswordModal = document.querySelector(".add-password-modal");
@@ -11,13 +10,6 @@ const menu = document.querySelector('aside');
 const menuOpen = document.querySelector('.hamburgur');
 const menuClose = document.querySelector('.cross');
 const userName = document.querySelector('.name');
-const openDetails = document.querySelectorAll('.visible-part');
-const details = document.querySelectorAll('.password');
-const passText = document.querySelector('.password-text');
-const copyPass = document.querySelector('.copy-action');
-const passList = document.querySelector('.passwords-list');
-
-startPopulate(passList);
 
 ( async () => {
   let obj = JSON.parse(localStorage.getItem('accInfo'));
@@ -62,20 +54,6 @@ function closeMenu(){
   menu.classList.remove('visible')
 }
 
-function showDetails(){
-  details[this.index].classList.toggle('visible')
-}
-
-function copyToClip(e){
-  navigator.clipboard.writeText(passText.textContent);
-  e.stopPropagation();
-}
-
-copyPass.addEventListener('click',copyToClip);
-openDetails.forEach((item,index)=>{
-  item.index = index
-  item.addEventListener('click',showDetails);
-})
 menuOpen.addEventListener('click',openMenu);
 menuClose.addEventListener('click',closeMenu);
 addPasswordButton && addPasswordButton.addEventListener("click", openModal);
