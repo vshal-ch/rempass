@@ -213,7 +213,8 @@ main::-webkit-scrollbar{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.3rem 1rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.05rem;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -258,11 +259,16 @@ button:hover {
   display: grid;
   place-items: center;
   width: 100%;
-  min-height: 250px;
+  height: 300px;
+  overflow-y: scroll;
   padding-bottom: 10px;
   background-color: #454545;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.passwords-list::-webkit-scrollbar{
+  width: 0px;
 }
 
 .passwords-list.yes {
@@ -297,7 +303,7 @@ button:hover {
 
 .visible-part {
   display: flex;
-  padding: 0.94rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -313,7 +319,7 @@ button:hover {
 }
 
 .name {
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .icons{
@@ -663,5 +669,9 @@ form {
     transform: translateY(0);
     z-index: 12;
     pointer-events: all;
+  }
+
+  .action img{
+    cursor: pointer;
   }
 }

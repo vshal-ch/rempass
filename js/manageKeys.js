@@ -2,8 +2,7 @@ import { app } from "./instance.js";
 import {
   getFirestore,
   doc,
-  getDoc,
-  getDocs,
+  deleteDoc,
   collection,
   onSnapshot,
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
@@ -18,6 +17,7 @@ let copyPass = document.querySelectorAll(".copy-action");
 let passText = document.querySelectorAll(".password-text");
 let details = document.querySelectorAll(".password");
 let openDetails = document.querySelectorAll(".visible-part");
+let deleteCTA = document.querySelector(".del-action img");
 
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -31,17 +31,30 @@ function copyToClip(e) {
   e.stopPropagation();
 }
 
+async function startDelete() {
+  if (!confirm("Do you want delete")) {
+    return;
+  }
+  console.log(auth.currentUser.uid, this.dataset.id);
+  try {
+    await deleteDoc(doc(db, auth.currentUser.uid + "", this.dataset.id + ""));
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
 function startListeners() {
   copyPass = document.querySelectorAll(".copy-action");
   passText = document.querySelectorAll(".password-text");
   details = document.querySelectorAll(".password");
   openDetails = document.querySelectorAll(".visible-part");
+  deleteCTA = document.querySelector(".del-action img");
 
   copyPass.forEach((item, index) => {
     item.index = index;
     item.addEventListener("click", copyToClip);
   });
-  "click", copyToClip;
+  deleteCTA.addEventListener("click", startDelete);
   openDetails.forEach((item, index) => {
     item.index = index;
     item.addEventListener("click", showDetails);
@@ -71,8 +84,10 @@ function populate(data) {
                         <img src="./assets/visibility.svg" alt="show" class="toggle-password">
                       </div>
                       <div class="actions-block">
-                        <span class="def-action action">
-                          <img src="./assets/delete_white_24dp.svg" alt="del">
+                        <span class="del-action action">
+                          <img src="./assets/delete_white_24dp.svg" alt="del" data-id="${
+                            doc.id
+                          }">
                         </span>
                         <span class="edit-action action">
                           <img src="./assets/edit_white_24dp.svg" alt="edit">
