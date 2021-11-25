@@ -2,6 +2,7 @@ import { app } from "./instance.js";
 import {
   getFirestore,
   doc,
+  getDoc,
   deleteDoc,
   collection,
   onSnapshot,
@@ -11,13 +12,15 @@ import {
   signInAnonymously,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
+import { openModal } from "./script.js"
 
 const passList = document.querySelector(".passwords-list");
 let copyPass = document.querySelectorAll(".copy-action");
 let passText = document.querySelectorAll(".password-text");
 let details = document.querySelectorAll(".password");
 let openDetails = document.querySelectorAll(".visible-part");
-let deleteCTA = document.querySelector(".del-action img");
+let deleteCTA = document.querySelectorAll(".del-action img");
+let editCTA = document.querySelector(".edit-action img");
 
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -35,7 +38,6 @@ async function startDelete() {
   if (!confirm("Do you want delete")) {
     return;
   }
-  console.log(auth.currentUser.uid, this.dataset.id);
   try {
     await deleteDoc(doc(db, auth.currentUser.uid + "", this.dataset.id + ""));
   } catch (e) {
@@ -48,13 +50,19 @@ function startListeners() {
   passText = document.querySelectorAll(".password-text");
   details = document.querySelectorAll(".password");
   openDetails = document.querySelectorAll(".visible-part");
-  deleteCTA = document.querySelector(".del-action img");
+  deleteCTA = document.querySelectorAll(".del-action img");
+  editCTA = document.querySelectorAll(".edit-action img");
 
   copyPass.forEach((item, index) => {
     item.index = index;
     item.addEventListener("click", copyToClip);
   });
-  deleteCTA.addEventListener("click", startDelete);
+  
+  editCTA.forEach(cta => cta.addEventListener("click", async ()=>{
+    let res = await getDoc(doc(db, auth.currentUser.uid + "", cta.dataset.id + ""));
+    openModal({modalTitle:"Update",platValue:cta.dataset.id,uValue:res.data().uname,passValue:res.data().key})
+  }));
+  deleteCTA.forEach(cta => cta.addEventListener("click", startDelete));
   openDetails.forEach((item, index) => {
     item.index = index;
     item.addEventListener("click", showDetails);
@@ -90,7 +98,9 @@ function populate(data) {
                           }">
                         </span>
                         <span class="edit-action action">
-                          <img src="./assets/edit_white_24dp.svg" alt="edit">
+                          <img src="./assets/edit_white_24dp.svg" alt="edit" data-id="${
+                            doc.id
+                          }">
                         </span>
                       </div>
                   </div>

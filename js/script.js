@@ -10,6 +10,11 @@ const menu = document.querySelector('aside');
 const menuOpen = document.querySelector('.hamburgur');
 const menuClose = document.querySelector('.cross');
 const userName = document.querySelector('.name');
+const formHeading = document.querySelector('.form-heading');
+const platformField = document.querySelector('.platform-name-input');
+const unameField = document.querySelector('.uname-input');
+const passField = document.querySelector('.password-input');
+const submitBtn = document.querySelector('.password-submit');
 
 ( async () => {
   let obj = JSON.parse(localStorage.getItem('accInfo'));
@@ -17,7 +22,12 @@ const userName = document.querySelector('.name');
   userName.textContent = data.name+`'s`;
 })();
 
-function openModal() {
+export function openModal({modalTitle="Add",platValue="",uValue="",passValue=""}={}) {
+  formHeading.textContent = modalTitle+" Password";
+  platformField.value = platValue;
+  unameField.value = uValue;
+  passField.value = passValue
+  submitBtn.value = modalTitle.toUpperCase();
   modalBack.classList.add("active");
   addPasswordModal.classList.add("active");
 }
