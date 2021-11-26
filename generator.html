@@ -57,7 +57,30 @@
       </header>
       <section class="main">
         <div class="wrapper">
-          
+          <section class="pass-display">
+            <h3 class="block-heading">Password</h3>
+            <input type="text" name="generated-pass" id="generated-pass" class="input">
+            <div class="actions-row">
+              <span class="copy-action">COPY</span>
+              <span class="save-action">SAVE</span>
+              <span class="re-action">REGEN</span>
+            </div>
+          </section>
+          <section class="options">
+            <h3 class="block-heading">
+              Options
+            </h3>
+            <ul class="options-list">
+              <li class="option-item">
+                <p>Select length</p>
+                <input type="number" name="length" id="length" list='nums'>
+                <datalist name='nums' id = 'nums'>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                </datalist>
+              </li>
+            </ul>
+          </section>
         </div>
       </section>
     </main>
