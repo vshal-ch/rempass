@@ -1,0 +1,251 @@
+.passwords-block {
+  display: flex;
+  flex-direction: column;
+  /* max-width: 320px; */
+}
+
+.passwords-block header {
+  background-color: #646464;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  font-size: 1.05rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.buttons-list {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.button button {
+  color: #fff;
+  background-color: #646464;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  transition: background-color 0.1s ease;
+  border-radius: 2px;
+}
+
+.plus {
+  width: 16px;
+}
+
+.add-folder {
+  width: 20px;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+.popup:hover::after {
+  opacity: 1;
+}
+button:hover {
+  background-color: #444;
+}
+
+.passwords-list {
+  text-align: center;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 300px;
+  overflow-y: scroll;
+  padding-bottom: 10px;
+  background-color: #454545;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.passwords-list::-webkit-scrollbar {
+  width: 0px;
+}
+
+.passwords-list.yes {
+  display: flex;
+  flex-direction: column;
+  text-align: unset;
+}
+
+.message {
+  line-height: 2rem;
+}
+
+.icon {
+  background-color: #aaa;
+  color: #222;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1.2rem;
+}
+
+.password {
+  border-bottom: 1px solid #aaa;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  user-select: none;
+}
+
+.visible-part {
+  display: flex;
+  padding: 0.8rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-and-logo {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.password-logo {
+  width: 24px;
+}
+
+.name {
+  font-size: 1rem;
+}
+
+.icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.copy-action {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #333;
+  padding: 3px;
+  display: grid;
+  place-items: center;
+}
+
+.copy-action img {
+  width: 18px;
+}
+
+.hidden-part {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.5rem;
+  transition: max-height 0.2s linear;
+}
+
+.password.visible .hidden-part {
+  max-height: 100px;
+  transition: max-height 0.2s linear;
+}
+
+.down-arrow {
+  transition: transform 0.2s linear;
+}
+
+.password.visible .down-arrow {
+  transform: rotate(180deg);
+}
+
+.password-block {
+  display: flex;
+  margin-top: 0.3rem;
+  width: 100%;
+  padding: 5px 10px 7px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.password-block::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  background-color: #fff;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.actions-block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.action {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+@media screen and (min-width: 620px) {
+  .passwords-block {
+    max-width: 320px;
+  }
+  .add-folder {
+    width: 20px;
+    margin-top: 3px;
+    margin-left: 3px;
+  }
+  .popup:hover::after {
+    opacity: 1;
+  }
+  button:hover {
+    background-color: #444;
+  }
+
+  .passwords-list {
+    text-align: center;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    background-color: #454545;
+  }
+
+  .copy-action {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #333;
+    padding: 3px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+
+  .message {
+    line-height: 2rem;
+  }
+
+  .icon {
+    background-color: #aaa;
+    color: #222;
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    line-height: 1.2rem;
+  }
+
+  .action img {
+    cursor: pointer;
+  }
+}

@@ -30,8 +30,8 @@ function showDetails() {
 }
 
 function copyToClip(e) {
-  navigator.clipboard.writeText(passText[this.index].textContent);
   e.stopPropagation();
+  navigator.clipboard.writeText(passText[this.index].textContent);
 }
 
 async function startDelete() {

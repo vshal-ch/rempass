@@ -1,5 +1,5 @@
 import {checkDb} from './readDb.js';
-import {addPasswordHelper} from './addToDb.js'
+import {addPasswordHelper} from './addToDb.js';
 
 const addPasswordButton = document.querySelector(".add-password");
 const addPasswordModal = document.querySelector(".add-password-modal");
