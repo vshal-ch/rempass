@@ -25,24 +25,35 @@
 
 .strength-block{
     padding: 4px 8px;
-    position: relative;
+
 }
 
-.strength-block::after{
-    content: "";
-    position: absolute;
+.progress{
+    position: relative;
     width: 100%;
     height: 3px;
     background-color: #fff;
+    margin-top: 4px;
+    border-radius: 1.5px;
+    --prog:0%;
+    --color:#ff0000;
+}
+
+.progress::after{
+    content: "";
+    position: absolute;
+    width: var(--prog);
+    height: 3px;
+    background-color: var(--color);
     left: 0;
-    top: 100%;
+    top: 0;
     border-radius: 1.5px;
 }
 
 .actions-row{
     display: flex;
     justify-content: space-around;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     font-weight: 700;
     font-size: .9rem;
     color: hsl(204, 71%, 67%)

@@ -1,4 +1,9 @@
+import {handleInput} from "./strengthCheck.js"
+import { getPass } from "./generatorHelper.js"
+
 const selectField = document.querySelector('#length');
+const displayField = document.querySelector("#generated-pass")
+const progress = document.querySelector('.progress');
 
 function fillSelect(){
     for(let i=8;i<30;i++){
@@ -13,4 +18,5 @@ function fillSelect(){
 }
 
 fillSelect();
-
+displayField.value = getPass();
+handleInput(false,progress,displayField.value)
