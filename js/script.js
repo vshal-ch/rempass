@@ -64,8 +64,8 @@ function closeMenu(){
   menu.classList.remove('visible')
 }
 
-menuOpen.addEventListener('click',openMenu);
-menuClose.addEventListener('click',closeMenu);
+menuOpen && menuOpen.addEventListener('click',openMenu);
+menuClose && menuClose.addEventListener('click',closeMenu);
 addPasswordButton && addPasswordButton.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
-addPasswordForm.addEventListener("submit", addPassword);
+closeModalBtn && closeModalBtn.addEventListener("click", closeModal);
+addPasswordForm && addPasswordForm.addEventListener("submit", addPassword);

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/strength.css" />
+    <link rel="stylesheet" href="./css/popup.css" />
+    <script src="./js/loggedcheck.js"></script>
+    <script src="./js/script.js" defer type="module"></script>
+    <title>Password manager</title>
+  </head>
+  <body>
+    <aside>
+      <div class="nav-block">
+        <div class="profile-card-container">
+          <section class="profile-card">
+            <img
+              src="./assets/circle.svg"
+              alt="profile avatar"
+              class="profile"
+            />
+            <h3 class="name">Your</h3>
+            <h4 class="tag">Password manager</h4>
+          </section>
+        </div>
+        <nav class="side-nav">
+          <ul class="links">
+            <li class="link">
+              <a href="index.html">Passwords</a>
+            </li>
+            <li class="link">
+              <a href="generator.html">Generator</a>
+            </li>
+            <li class="link">
+              <a href="strength.html">Strength checker</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <span class="cross"></span>
+    </aside>
+    <main>
+      <header class="top">
+        <div class="wrapper">
+          <div class="hamburgur">
+            <span class="line"></span>
+          </div>
+          <h1 class="heading">Strength Checker</h1>
+        </div>
+      </header>
+      <section class="main">
+        <div class="wrapper">
+          <section class="checker-container">
+            <h3 class="block-heading">Enter Password</h3>
+            <input
+              type="text"
+              name="password"
+              id="entered-pass"
+              autofocus
+              placeholder="Password"
+            />
+            <div class="progress"></div>
+            <div class="remarks">
+              <h4>Obseravations</h4>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

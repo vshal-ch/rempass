@@ -156,6 +156,14 @@ main::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
 }
+
+.top .heading {
+  font-size: 1.4rem;
+}
+
+main {
+  padding-bottom: 1.5rem;
+}
 .wrapper {
   width: 85%;
 }
