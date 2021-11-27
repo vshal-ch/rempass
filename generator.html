@@ -11,9 +11,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/generator.css" />
     <link rel="stylesheet" href="./css/popup.css" />
     <script src="./js/loggedcheck.js"></script>
     <script src="./js/script.js" defer type="module"></script>
+    <script src="./js/generator.js" defer type='module'></script>
     <title>Password manager</title>
   </head>
   <body>
@@ -58,28 +60,42 @@
       <section class="main">
         <div class="wrapper">
           <section class="pass-display">
-            <h3 class="block-heading">Password</h3>
-            <input type="text" name="generated-pass" id="generated-pass" class="input">
+            <h3 class="block-heading">Generated Password</h3>
+            <div class="strength-block">
+              <input type="text" name="generated-pass" id="generated-pass" />
+            </div>
             <div class="actions-row">
               <span class="copy-action">COPY</span>
               <span class="save-action">SAVE</span>
-              <span class="re-action">REGEN</span>
+              <span class="regen-action">REGEN</span>
             </div>
           </section>
           <section class="options">
-            <h3 class="block-heading">
-              Options
-            </h3>
+            <h3 class="block-heading">Options</h3>
             <ul class="options-list">
               <li class="option-item">
                 <p>Select length</p>
-                <input type="number" name="length" id="length" list='nums'>
-                <datalist name='nums' id = 'nums'>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                </datalist>
+                <select name="length" id="length"></select>
+              </li>
+              <li class="option-item">
+                <p>Uppercase letters</p>
+                <input
+                  type="checkbox"
+                  name="uppercase"
+                  id="uppercase"
+                  checked
+                />
+              </li>
+              <li class="option-item">
+                <p>Numbers</p>
+                <input type="checkbox" name="nums" id="nums" checked />
+              </li>
+              <li class="option-item">
+                <p>Special Chars</p>
+                <input type="checkbox" name="special" id="special" checked />
               </li>
             </ul>
+            <button class="generate-pass">GENERATE</button>
           </section>
         </div>
       </section>

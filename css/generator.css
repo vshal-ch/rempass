@@ -1,0 +1,125 @@
+.top .heading{
+    font-size: 1.4rem;
+}
+
+main{
+    padding-bottom: 1.5rem;
+}
+
+.main .wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pass-display , .options{
+    background-color: #444;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#generated-pass{
+    background-color: transparent;
+    outline: none;
+    border:none;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.strength-block{
+    padding: 4px 8px;
+    position: relative;
+}
+
+.strength-block::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    left: 0;
+    top: 100%;
+    border-radius: 1.5px;
+}
+
+.actions-row{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0.5rem;
+    font-weight: 700;
+    font-size: .9rem;
+    color: hsl(204, 71%, 67%)
+}
+
+.actions-row span{
+    padding: 3px 8px;
+    background-color: transparent;
+    border-radius: 3px;
+    transition: background-color .2s linear;
+    cursor: default;
+}
+
+.save-action{
+    color:hsl(110, 71%, 57%);
+}
+.regen-action{
+    color:hsl(49, 71%, 57%);
+}
+
+.actions-row span:hover{
+    background-color: #333;
+}
+
+.options-list{
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+}
+
+.option-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+select{
+    background-color: transparent;
+    border:none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    width: 50px;
+}
+
+button{
+    padding: 7px;
+    background-color: hsl(204, 71%, 57%);
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color:#fff;
+    margin-top: 6px;
+    font-family: Lato;
+    font-weight: 600;
+}
+
+@media screen and (min-width: 768px){
+    .main .wrapper{
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
+
+    .pass-display{
+        width: 45%;
+        max-width: 330px;
+    }
+
+    .options{
+        width: 55%;
+        max-width: 330px;
+    }
+}
