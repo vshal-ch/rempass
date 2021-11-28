@@ -35,7 +35,7 @@
         <nav class="side-nav">
           <ul class="links">
             <li class="link">
-              <a href="index.html">Passwords</a>
+              <a href="home.html">Passwords</a>
             </li>
             <li class="link">
               <a href="generator.html">Generator</a>
@@ -73,6 +73,7 @@
           </section>
           <section class="options">
             <h3 class="block-heading">Options</h3>
+            <form class="option-form">
             <ul class="options-list">
               <li class="option-item">
                 <p>Select length</p>
@@ -82,8 +83,8 @@
                 <p>Uppercase letters</p>
                 <input
                   type="checkbox"
-                  name="uppercase"
-                  id="uppercase"
+                  name="upper"
+                  id="upper"
                   checked
                 />
               </li>
@@ -96,7 +97,8 @@
                 <input type="checkbox" name="special" id="special" checked />
               </li>
             </ul>
-            <button class="generate-pass">GENERATE</button>
+            <button class="generate-pass" type="submit">GENERATE</button>
+          </form>
           </section>
         </div>
       </section>

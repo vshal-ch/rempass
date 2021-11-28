@@ -118,4 +118,4 @@ async function startGettingDocs(user) {
   }
 }
 
-onAuthStateChanged(auth, startGettingDocs);
+// onAuthStateChanged(auth, startGettingDocs);

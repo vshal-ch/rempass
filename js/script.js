@@ -15,6 +15,8 @@ const platformField = document.querySelector('.platform-name-input');
 const unameField = document.querySelector('.uname-input');
 const passField = document.querySelector('.password-input');
 const submitBtn = document.querySelector('.password-submit');
+const save = document.querySelector('.save-action');
+const displayField = document.querySelector("#generated-pass");
 
 ( async () => {
   let obj = JSON.parse(localStorage.getItem('accInfo'));
@@ -67,5 +69,8 @@ function closeMenu(){
 menuOpen && menuOpen.addEventListener('click',openMenu);
 menuClose && menuClose.addEventListener('click',closeMenu);
 addPasswordButton && addPasswordButton.addEventListener("click", openModal);
+save && save.addEventListener("click", ()=>{
+  openModal({passValue:displayField.value})
+});
 closeModalBtn && closeModalBtn.addEventListener("click", closeModal);
 addPasswordForm && addPasswordForm.addEventListener("submit", addPassword);

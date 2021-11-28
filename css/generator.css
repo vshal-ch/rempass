@@ -65,6 +65,9 @@
     border-radius: 3px;
     transition: background-color .2s linear;
     cursor: default;
+    position: relative;
+    overflow: hidden;
+    pointer-events: visible;
 }
 
 .save-action{
@@ -76,6 +79,29 @@
 
 .actions-row span:hover{
     background-color: #333;
+}
+
+.copy-action::after{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: url('../assets/done_white_24dp.svg');
+    top:0;
+    right: 100%;
+    display: grid;
+    place-items: center;
+    border-radius: 3px;
+    background-color: hsl(204, 71%, 67%);
+    transition: right .2s ease-in;
+    pointer-events: none;
+}
+
+.copy-action.done{
+    pointer-events: none;
+}
+
+.copy-action.done::after{
+    right: 0;
 }
 
 .options-list{
