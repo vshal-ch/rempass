@@ -9,10 +9,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
 import {
   getAuth,
-  signInAnonymously,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
-import { openModal } from "./script.js"
+import { openModal } from "./script.js";
 
 const passList = document.querySelector(".passwords-list");
 let copyPass = document.querySelectorAll(".copy-action");
@@ -21,6 +20,7 @@ let details = document.querySelectorAll(".password");
 let openDetails = document.querySelectorAll(".visible-part");
 let deleteCTA = document.querySelectorAll(".del-action img");
 let editCTA = document.querySelector(".edit-action img");
+let toggleView = document.querySelectorAll(".toggle-password");
 
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -31,7 +31,7 @@ function showDetails() {
 
 function copyToClip(e) {
   e.stopPropagation();
-  navigator.clipboard.writeText(passText[this.index].textContent);
+  navigator.clipboard.writeText(passText[this.index].value);
 }
 
 async function startDelete() {
@@ -52,17 +52,39 @@ function startListeners() {
   openDetails = document.querySelectorAll(".visible-part");
   deleteCTA = document.querySelectorAll(".del-action img");
   editCTA = document.querySelectorAll(".edit-action img");
+  toggleView = document.querySelectorAll(".toggle-password");
 
   copyPass.forEach((item, index) => {
     item.index = index;
     item.addEventListener("click", copyToClip);
   });
-  
-  editCTA.forEach(cta => cta.addEventListener("click", async ()=>{
-    let res = await getDoc(doc(db, auth.currentUser.uid + "", cta.dataset.id + ""));
-    openModal({modalTitle:"Update",platValue:cta.dataset.id,uValue:res.data().uname,passValue:res.data().key})
-  }));
-  deleteCTA.forEach(cta => cta.addEventListener("click", startDelete));
+
+  toggleView.forEach((view, index) => {
+    view.addEventListener("click", () => {
+      if (view.getAttribute("src") == "./assets/visibility.svg") {
+        view.setAttribute("src", "./assets/visibility_off_white_24dp.svg");
+        passText[index].setAttribute("type", "password");
+      } else {
+        view.setAttribute("src", "./assets/visibility.svg");
+        passText[index].setAttribute("type", "text");
+      }
+    });
+  });
+
+  editCTA.forEach((cta) =>
+    cta.addEventListener("click", async () => {
+      let res = await getDoc(
+        doc(db, auth.currentUser.uid + "", cta.dataset.id + "")
+      );
+      openModal({
+        modalTitle: "Update",
+        platValue: cta.dataset.id,
+        uValue: res.data().uname,
+        passValue: res.data().key,
+      });
+    })
+  );
+  deleteCTA.forEach((cta) => cta.addEventListener("click", startDelete));
   openDetails.forEach((item, index) => {
     item.index = index;
     item.addEventListener("click", showDetails);
@@ -88,8 +110,10 @@ function populate(data) {
                   </div>
                   <div class="hidden-part">
                       <div class="password-block">
-                        <p class="password-text">${doc.data().key}</p>
-                        <img src="./assets/visibility.svg" alt="show" class="toggle-password">
+                        <input type='password' class="password-text" value='${
+                          doc.data().key
+                        }' disabled/>
+                        <img src="./assets/visibility_off_white_24dp.svg" alt="show" class="toggle-password">
                       </div>
                       <div class="actions-block">
                         <span class="del-action action">
@@ -108,6 +132,7 @@ function populate(data) {
         `;
   });
   passList.innerHTML = str;
+  passList.classList.add("yes");
   startListeners();
 }
 
@@ -118,4 +143,4 @@ async function startGettingDocs(user) {
   }
 }
 
-// onAuthStateChanged(auth, startGettingDocs);
+onAuthStateChanged(auth, startGettingDocs);

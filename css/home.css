@@ -1,3 +1,4 @@
+
 .passwords-block {
   display: flex;
   flex-direction: column;
@@ -73,6 +74,38 @@ button:hover {
   text-align: unset;
 }
 
+.loader{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image:  conic-gradient(rgb(245, 245, 245) 40grad, 80grad, rgb(87, 87, 87) 360grad);
+  animation: revolve .8s linear infinite;
+  position: relative;
+}
+
+.loader::after{
+  display: block;
+  width: 90%;
+  height: 90%;
+  content:"";
+  border-radius: 50%;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background-color: #454545;
+  /* z-index: 3; */
+  position: absolute;
+}
+
+@keyframes revolve {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
 .message {
   line-height: 2rem;
 }
@@ -95,6 +128,15 @@ button:hover {
   flex-direction: column;
   position: relative;
   user-select: none;
+}
+
+.password-text{
+  background-color: transparent;
+  font-size: 1rem;
+  border:none;
+  outline: none;
+  color:#fff;
+  width: 100%;
 }
 
 .visible-part {
