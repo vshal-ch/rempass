@@ -267,6 +267,10 @@ form {
   transition: border-color 0.1s linear;
 }
 
+.input-block.error{
+  border: 1px solid #ff3535;
+}
+
 .input {
   background-color: transparent;
   border: none;
@@ -291,6 +295,10 @@ form {
   padding: 0 0.5rem;
   border-left: 1px solid #eee;
   transition: border-left-color 0.1s linear;
+}
+
+.input-block.error .input-option{
+  border-left-color:#ff3535;
 }
 
 .input-block:focus-within {

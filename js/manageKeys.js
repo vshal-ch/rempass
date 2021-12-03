@@ -137,6 +137,7 @@ function populate(data) {
 }
 
 async function startGettingDocs(user) {
+  console.log(user);
   if (user) {
     const coll = collection(db, user.uid);
     const snapShotListener = onSnapshot(coll, populate);

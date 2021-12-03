@@ -39,6 +39,9 @@ export function openModal({
   unameField.value = uValue;
   passField.value = passValue;
   submitBtn.value = modalTitle.toUpperCase();
+  platformField.parentElement.classList.remove("error");
+  unameField.parentElement.classList.remove("error");
+
   modalBack.classList.add("active");
   addPasswordModal.classList.add("active");
 }
@@ -51,10 +54,19 @@ function closeModal(e) {
 
 async function addPassword(e) {
   e.preventDefault();
+
   let pName = addPasswordForm["platform"].value;
   let uName = addPasswordForm["username"].value;
   let pass = addPasswordForm["password"].value;
-  if (pName.trim() == "" || uName.trim() == "" || pass.trim() == "") {
+  if (pName.trim() == "" || uName.trim() == "") {
+    if (pName.trim() == "") {
+      platformField.parentElement.classList.add("error");
+      platformField.flag = true;
+    }
+    if (uName.trim() == "") {
+      unameField.parentElement.classList.add("error");
+      unameField.flag = true;
+    }
     return;
   }
   let obj = JSON.parse(localStorage.getItem("accInfo"));
@@ -78,6 +90,11 @@ function closeMenu() {
 function showPass() {
   let pass = getPass();
   addPasswordForm["password"].value = pass;
+}
+
+function changeBord(){
+  if(!this.flag) return
+  
 }
 
 menuOpen && menuOpen.addEventListener("click", openMenu);
@@ -106,3 +123,6 @@ toggleView &&
       addPasswordForm["password"].setAttribute("type", "text");
     }
   });
+
+unameField.addEventListener('input',changeBord);
+platformField.addEventListener('input',changeBord);

@@ -187,12 +187,11 @@ button:hover {
   max-height: 0;
   overflow: hidden;
   padding: 0 1.5rem;
-  transition: max-height 0.2s linear;
+  transition: max-height 0.3s ease;
 }
 
 .password.visible .hidden-part {
   max-height: 100px;
-  transition: max-height 0.2s linear;
 }
 
 .down-arrow {
