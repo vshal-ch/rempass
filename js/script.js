@@ -94,7 +94,14 @@ function showPass() {
 
 function changeBord(){
   if(!this.flag) return
-  
+  if (this.value.trim() == "") {
+    this.parentElement.classList.add("error");
+    this.flag = true;
+  }
+  else{
+    this.parentElement.classList.remove("error");
+    this.flag = true;
+  }
 }
 
 menuOpen && menuOpen.addEventListener("click", openMenu);
