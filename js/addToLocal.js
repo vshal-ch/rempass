@@ -1,6 +1,6 @@
 
 
-export function addToLocalStorage(data){
+export function addToLocalStorage(name,data){
     let jsonString = JSON.stringify(data);
-    localStorage.setItem('accInfo',jsonString);
+    localStorage.setItem(name,jsonString);
 }

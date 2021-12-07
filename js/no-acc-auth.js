@@ -11,11 +11,30 @@ import { addToLocalStorage } from "./addToLocal.js";
 const auth = getAuth(app);
 const noAccForm = document.querySelector(".no-acc-form");
 
+function withoutPin(name) {}
+
 function createUserAnonymously(e) {
   e.preventDefault();
+  let name = noAccForm["refer-name"].value;
+  let pin = noAccForm["skip"].checked ? null : noAccForm["pin"].value;
+  let dId = getDid();
+  if (!pin) {
+    addData("anonymous-users", dId, {
+      id: dId,
+      name,
+      pin,
+    }).then(() => {
+      location.href = "home.html";
+      addToLocalStorage("accinfo", {
+        logged: true,
+        accType: "no-auth",
+        divId: dId,
+        pass,
+      });
+    });
+  }
+
   signInAnonymously(auth).then((user) => {
-    let name = noAccForm["refer-name"].value;
-    let pin = noAccForm["skip"].checked ? null : noAccForm["pin"].value;
     let pass = pin ? true : false;
     if (user) {
       addData("anonymous-users", getDid(), {
@@ -24,7 +43,7 @@ function createUserAnonymously(e) {
         pin,
       }).then(() => {
         location.href = "home.html";
-        addToLocalStorage({
+        addToLocalStorage("accinfo", {
           logged: true,
           accType: "no-auth",
           divId: getDid(),
