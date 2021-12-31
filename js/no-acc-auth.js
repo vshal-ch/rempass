@@ -1,17 +1,32 @@
 import {
   getAuth,
-  signInAnonymously,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
 import { app } from "./instance.js";
-import { addData } from "./addToDb.js";
+import { addData,updateData } from "./addToDb.js";
 import { addToLocalStorage } from "./addToLocal.js";
 
 const auth = getAuth(app);
 const noAccForm = document.querySelector(".no-acc-form");
 
-function withoutPin(name) {}
+function withoutPin(name,id) {
+  addData('woutpn',id,{
+    name
+  },true).then(() => {
+    addToLocalStorage("accInfo", {
+      logged: true,
+      accType: "woutpn",
+      id: id,
+    });
+    sessionStorage.setItem('lgdinfnm','{"flag":"yes"}');
+    location.href = "home.html";
+  });
+}
+
+function withPin(name,id,pin){
+  
+}
 
 function createUserAnonymously(e) {
   e.preventDefault();
@@ -19,39 +34,30 @@ function createUserAnonymously(e) {
   let pin = noAccForm["skip"].checked ? null : noAccForm["pin"].value;
   let dId = getDid();
   if (!pin) {
-    addData("anonymous-users", dId, {
-      id: dId,
-      name,
-      pin,
-    }).then(() => {
-      location.href = "home.html";
-      addToLocalStorage("accinfo", {
-        logged: true,
-        accType: "no-auth",
-        divId: dId,
-        pass,
-      });
-    });
+    withoutPin(name,dId);
+  }
+  else{
+
   }
 
-  signInAnonymously(auth).then((user) => {
-    let pass = pin ? true : false;
-    if (user) {
-      addData("anonymous-users", getDid(), {
-        id: user.user.uid,
-        name,
-        pin,
-      }).then(() => {
-        location.href = "home.html";
-        addToLocalStorage("accinfo", {
-          logged: true,
-          accType: "no-auth",
-          divId: getDid(),
-          pass,
-        });
-      });
-    }
-  });
+  // signInAnonymously(auth).then((user) => {
+  //   let pass = pin ? true : false;
+  //   if (user) {
+  //     addData("anonymous-users", getDid(), {
+  //       id: user.user.uid,
+  //       name,
+  //       pin,
+  //     }).then(() => {
+  //       location.href = "home.html";
+  //       addToLocalStorage("accinfo", {
+  //         logged: true,
+  //         accType: "no-auth",
+  //         divId: getDid(),
+  //         pass,
+  //       });
+  //     });
+  //   }
+  // });
 }
 
 function getDid() {

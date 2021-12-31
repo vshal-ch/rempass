@@ -24,7 +24,7 @@ const toggleView = document.querySelector(".toggle-view");
 
 (async () => {
   let obj = JSON.parse(localStorage.getItem("accInfo"));
-  let data = await checkDb(obj.divId);
+  let data = await checkDb(obj.id,obj.accType);
   userName.textContent = data.name + `'s`;
 })();
 
@@ -73,8 +73,8 @@ async function addPassword(e) {
   if (!obj) {
     return;
   }
-  let { divId } = obj;
-  let res = await addPasswordHelper(divId, pName, uName, pass);
+  let { id } = obj;
+  let res = await addPasswordHelper(id, pName, uName, pass);
   console.log(res);
   closeModal(e);
 }
@@ -131,5 +131,5 @@ toggleView &&
     }
   });
 
-unameField.addEventListener('input',changeBord);
-platformField.addEventListener('input',changeBord);
+unameField && unameField.addEventListener('input',changeBord);
+platformField && platformField.addEventListener('input',changeBord);

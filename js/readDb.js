@@ -3,8 +3,8 @@ import {getFirestore, doc, getDoc,getDocs,collection} from "https://www.gstatic.
 
 const db = getFirestore(app);
 
-async function checkDb(docId){
-    const docRef = doc(db,'anonymous-users',docId);
+async function checkDb(docId,coll){
+    const docRef = doc(db,coll,docId);
     const docSnap = await getDoc(docRef);
     if(docSnap.exists()){
         return docSnap.data();

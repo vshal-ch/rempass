@@ -144,4 +144,9 @@ async function startGettingDocs(user) {
   }
 }
 
-onAuthStateChanged(auth, startGettingDocs);
+if (window.acc.accType == "woutpn") {
+  const coll = collection(db, window.acc.id);
+  const snapShotListener = onSnapshot(coll, populate);
+} else {
+  onAuthStateChanged(auth, startGettingDocs);
+}

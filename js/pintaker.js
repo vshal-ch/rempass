@@ -19,8 +19,8 @@ async function seeIfCorrect(e){
     if(value.trim()==''){
         return;
     }
-    let {divId} = JSON.parse(localStorage.getItem('accInfo'));
-    let data = await checkDb(divId);
+    let {id} = JSON.parse(localStorage.getItem('accInfo'));
+    let data = await checkDb(id);
     let {pin} = data;
     if(pin==value){
         formContainer.classList.remove('not-matched');
