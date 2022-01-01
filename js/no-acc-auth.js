@@ -13,7 +13,7 @@ const noAccForm = document.querySelector(".no-acc-form");
 function withoutPin(name,id) {
   addData('woutpn',id,{
     name
-  },true).then(() => {
+  }).then(() => {
     addToLocalStorage("accInfo", {
       logged: true,
       accType: "woutpn",
@@ -25,7 +25,17 @@ function withoutPin(name,id) {
 }
 
 function withPin(name,id,pin){
-  
+  addData('wthpn',id,{
+    name,pin
+  }).then(() => {
+    addToLocalStorage("accInfo", {
+      logged: true,
+      accType: "wthpn",
+      id: id,
+    });
+    sessionStorage.setItem('lgdinfnm','{"flag":"yes"}');
+    location.href = "home.html";
+  });
 }
 
 function createUserAnonymously(e) {
@@ -37,7 +47,7 @@ function createUserAnonymously(e) {
     withoutPin(name,dId);
   }
   else{
-
+    withPin(name,dId,pin)
   }
 
   // signInAnonymously(auth).then((user) => {
