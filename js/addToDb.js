@@ -32,7 +32,7 @@ export async function addData(coll, docId, data) {
 }
 
 export async function addPasswordHelper(id, platformName, uname, key) {
-  if(window.acc.accType=='woutpn'){
+  if(window.acc.accType=='woutpn' || window.acc.accType=='wthpn'){
     let coll = id;
     let res = await addData(coll, platformName, { id, uname, key });
   }

@@ -20,7 +20,7 @@ async function seeIfCorrect(e){
         return;
     }
     let {id} = JSON.parse(localStorage.getItem('accInfo'));
-    let data = await checkDb(id);
+    let data = await checkDb(id,'wthpn');
     let {pin} = data;
     if(pin==value){
         formContainer.classList.remove('not-matched');

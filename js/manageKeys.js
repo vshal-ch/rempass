@@ -39,7 +39,7 @@ async function startDelete() {
     return;
   }
   try {
-    await deleteDoc(doc(db, auth.currentUser.uid + "", this.dataset.id + ""));
+    await deleteDoc(doc(db, window.acc.id + "", this.dataset.id + ""));
   } catch (e) {
     console.log(e.message);
   }
@@ -73,9 +73,14 @@ function startListeners() {
 
   editCTA.forEach((cta) =>
     cta.addEventListener("click", async () => {
-      let res = await getDoc(
-        doc(db, auth.currentUser.uid + "", cta.dataset.id + "")
-      );
+      let res;
+      if (window.acc.accType == "woutpn" || window.acc.accType == "wthpn") {
+        res = await getDoc(doc(db, window.acc.id + "", cta.dataset.id + ""));
+      } else {
+        res = await getDoc(
+          doc(db, auth.currentUser.uid + "", cta.dataset.id + "")
+        );
+      }
       openModal({
         modalTitle: "Update",
         platValue: cta.dataset.id,
@@ -144,7 +149,7 @@ async function startGettingDocs(user) {
   }
 }
 
-if (window.acc.accType == "woutpn") {
+if (window.acc.accType == "woutpn" || window.acc.accType == "wthpn") {
   const coll = collection(db, window.acc.id);
   const snapShotListener = onSnapshot(coll, populate);
 } else {
