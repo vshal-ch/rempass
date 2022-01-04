@@ -14,7 +14,8 @@
     />
     <title>Login | Password manager</title>
     <script src="./js/instance.js" type="module"></script>
-    <script src="./js/no-acc-auth.js" type="module"></script>
+    <script src="./js/no-acc-auth.js" defer type="module"></script>
+    <script src="./js/emailAuth.js" defer type="module"></script>
     <script src="./js/auth-page.js" defer></script>
   </head>
   <body>
@@ -33,15 +34,16 @@
             <div class="form-block">
               <form class="form login-form">
                 <div class="error-block">
-                  <div class="input-container" data-place="Username">
+                  <div class="input-container" data-place="Email">
                     <input
-                      type="text"
-                      name="login-username"
-                      id="login-username"
-                      class="input"
+                      type="email"
+                      name="login-email"
+                      id="login-email"
+                      class="input input-login"
                       data-required="true"
+                      data-pattern="email"
                     />
-                    <label for="login-username">Username</label>
+                    <label for="login-email">Email</label>
                   </div>
                   <span class="error-message"></span>
                 </div>
@@ -51,37 +53,26 @@
                       type="password"
                       name="login-pass"
                       id="login-pass"
-                      class="input"
+                      class="input input-login"
                       data-required="true"
+                      data-pattern="login-pass"
                     />
                     <label for="login-pass">Password</label>
                   </div>
                   <span class="error-message"></span>
                 </div>
-                <button type="submit" class="submit">LOGIN</button>
+                <button type="submit" class="submit disabled login-btn" disabled>LOGIN</button>
               </form>
               <form class="form">
-                <div class="error-block">
-                  <div class="input-container" data-place="Username">
-                    <input
-                      type="text"
-                      name="singup-username"
-                      id="singup-username"
-                      class="input"
-                      data-required="true"
-                    />
-                    <label for="singup-username">Username</label>
-                  </div>
-                  <span class="error-message"></span>
-                </div>
                 <div class="error-block">
                   <div class="input-container" data-place="Email">
                     <input
                       type="email"
                       name="email"
                       id="email"
-                      class="input"
+                      class="input input-signup"
                       data-required="true"
+                      data-pattern="email"
                     />
                     <label for="email">Email</label>
                   </div>
@@ -93,14 +84,29 @@
                       type="password"
                       name="signup-pass"
                       id="signup-pass"
-                      class="input"
+                      class="input input-signup"
                       data-required="true"
+                      data-pattern="pass"
                     />
                     <label for="signup-pass">Password</label>
                   </div>
                   <span class="error-message"></span>
                 </div>
-                <button type="submit" class="submit">LOGIN</button>
+                <div class="error-block">
+                  <div class="input-container" data-place="Confirm Password">
+                    <input
+                      type="password"
+                      name="signup-con-pass"
+                      id="signup-con-pass"
+                      class="input input-signup"
+                      data-required="true"
+                      data-pattern="con-pass"
+                    />
+                    <label for="signup-con-pass">Confirm Password</label>
+                  </div>
+                  <span class="error-message"></span>
+                </div>
+                <button type="submit" class="submit signup-btn disabled" disabled>SIGNUP</button>
               </form>
             </div>
           </div>

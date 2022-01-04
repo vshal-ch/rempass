@@ -145,7 +145,7 @@ main {
     font-size 0.2s ease-out;
 }
 .input-container:focus-within {
-  border: 1px solid #c4d3ab;
+  border: 1px solid #23b2c5;
 }
 .input-container.red-border:focus-within {
   border: 1px solid #ff8080;
@@ -468,15 +468,6 @@ form {
     pointer-events: none;
     transition: color 0.2s ease-out, top 0.2s ease-out, left 0.2s ease-out,
       font-size 0.2s ease-out;
-  }
-  .input-container:focus-within {
-    border: 1px solid #c4d3ab;
-  }
-  .input-container.red-border:focus-within {
-    border: 1px solid #ff8080;
-  }
-  .input-container.red-border:focus-within label {
-    color: #ff8080;
   }
 
   .input {

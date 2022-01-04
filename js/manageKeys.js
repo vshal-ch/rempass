@@ -73,14 +73,7 @@ function startListeners() {
 
   editCTA.forEach((cta) =>
     cta.addEventListener("click", async () => {
-      let res;
-      if (window.acc.accType == "woutpn" || window.acc.accType == "wthpn") {
-        res = await getDoc(doc(db, window.acc.id + "", cta.dataset.id + ""));
-      } else {
-        res = await getDoc(
-          doc(db, auth.currentUser.uid + "", cta.dataset.id + "")
-        );
-      }
+      let res = await getDoc(doc(db, window.acc.id + "", cta.dataset.id + ""));
       openModal({
         modalTitle: "Update",
         platValue: cta.dataset.id,
@@ -141,17 +134,5 @@ function populate(data) {
   startListeners();
 }
 
-async function startGettingDocs(user) {
-  console.log(user);
-  if (user) {
-    const coll = collection(db, user.uid);
-    const snapShotListener = onSnapshot(coll, populate);
-  }
-}
-
-if (window.acc.accType == "woutpn" || window.acc.accType == "wthpn") {
-  const coll = collection(db, window.acc.id);
-  const snapShotListener = onSnapshot(coll, populate);
-} else {
-  onAuthStateChanged(auth, startGettingDocs);
-}
+const coll = collection(db, window.acc.id);
+const snapShotListener = onSnapshot(coll, populate);

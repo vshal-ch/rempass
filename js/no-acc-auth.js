@@ -1,7 +1,6 @@
 import {
   getAuth,
   onAuthStateChanged,
-  createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
 import { app } from "./instance.js";
 import { addData,updateData } from "./addToDb.js";
@@ -49,25 +48,6 @@ function createUserAnonymously(e) {
   else{
     withPin(name,dId,pin)
   }
-
-  // signInAnonymously(auth).then((user) => {
-  //   let pass = pin ? true : false;
-  //   if (user) {
-  //     addData("anonymous-users", getDid(), {
-  //       id: user.user.uid,
-  //       name,
-  //       pin,
-  //     }).then(() => {
-  //       location.href = "home.html";
-  //       addToLocalStorage("accinfo", {
-  //         logged: true,
-  //         accType: "no-auth",
-  //         divId: getDid(),
-  //         pass,
-  //       });
-  //     });
-  //   }
-  // });
 }
 
 function getDid() {
