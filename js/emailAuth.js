@@ -9,23 +9,25 @@ import { addToLocalStorage } from "./addToLocal.js";
 const auth = getAuth(app);
 const signUpForm = document.querySelector(".signup-form");
 
-function handleSubmit(e){
-    e.preventDefault();
-    let email = signUpForm[0].value;
-    let pass = signUpForm[1].value;
-    createUserWithEmailAndPassword(auth,email,pass)
-    .then((userCred)=>{
-        let user = userCred.user
-    })
+function handleSubmit(e) {
+  e.preventDefault();
+  let email = signUpForm[0].value;
+  let pass = signUpForm[1].value;
+  createUserWithEmailAndPassword(auth, email, pass).then((userCred) => {
+    let user = userCred.user;
+    addToLocalStorage("accInfo", {
+      id: user.uid,
+      accType: "email/pass",
+      verif: false,
+    });
+  });
 }
 
-onAuthStateChanged(auth,(user)=>{
-    if(!user.emailVerified){
+auth && onAuthStateChanged(auth, (user) => {
+  if (!user.emailVerified) {
+    location.href = "verify.html";
+  } else {
+  }
+});
 
-    }
-    else{
-        
-    }
-})
-
-signUpForm.addEventListener('submit',handleSubmit)
+signUpForm.addEventListener("submit", handleSubmit);
