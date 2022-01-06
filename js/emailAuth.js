@@ -2,6 +2,7 @@ import {
   getAuth,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
+  sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
 import { app } from "./instance.js";
 import { addToLocalStorage } from "./addToLocal.js";
@@ -23,11 +24,16 @@ function handleSubmit(e) {
   });
 }
 
-auth && onAuthStateChanged(auth, (user) => {
-  if (!user.emailVerified) {
-    location.href = "verify.html";
-  } else {
-  }
-});
+auth &&
+  onAuthStateChanged(auth, (user) => {
+    if (!user.emailVerified) {
+      sendEmailVerification(user).then(() => {
+        console.log("sent");
+      });
+      location.href = "verify.html";
+    } else {
+      location.href = 'home.html'
+    }
+  });
 
 signUpForm.addEventListener("submit", handleSubmit);

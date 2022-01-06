@@ -1,3 +1,4 @@
+import { getAuth, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
 (function () {
   let json = JSON.parse(localStorage.getItem("accInfo"));
   if (json && (json.accType !== "email/pass" || json.verif != false)) {
@@ -5,9 +6,11 @@
   }
 })();
 
-import { getAuth, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
-
 const auth = getAuth();
-sendEmailVerification(auth.currentUser).then(() => {
-  console.log('sent');
-});
+async function sendMail(){
+  let user = await auth.currentUser()
+  console.log(user);
+  
+}
+
+// sendMail()
