@@ -2,7 +2,7 @@ import {
   getAuth,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
-  sendEmailVerification
+  sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
 import { app } from "./instance.js";
 import { addToLocalStorage } from "./addToLocal.js";
@@ -27,12 +27,20 @@ function handleSubmit(e) {
 auth &&
   onAuthStateChanged(auth, (user) => {
     if (!user.emailVerified) {
-      sendEmailVerification(user).then(() => {
-        console.log("sent");
-      });
-      location.href = "verify.html";
+      sendEmailVerification(user)
+        .then(() => {
+          location.href = "verify.html";
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     } else {
-      location.href = 'home.html'
+      addToLocalStorage("accInfo", {
+        id: user.uid,
+        accType: "email/pass",
+        verif: true,
+      });
+      location.href = "home.html";
     }
   });
 
