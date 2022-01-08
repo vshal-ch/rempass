@@ -14,7 +14,7 @@ let db = getFirestore(app);
 export async function updateData(coll, docId, data) {
   try {
     let docRef = await updateDoc(doc(db, coll, docId), {
-      ids: arrayUnion(data)
+      ids: arrayUnion(data),
     });
     return docRef;
   } catch (e) {
@@ -32,17 +32,6 @@ export async function addData(coll, docId, data) {
 }
 
 export async function addPasswordHelper(id, platformName, uname, key) {
-  if(window.acc.accType=='woutpn' || window.acc.accType=='wthpn'){
-    let coll = id;
-    let res = await addData(coll, platformName, { id, uname, key });
-  }
-  else{
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        let coll = user.uid;
-        let res = await addData(coll, platformName, { id, uname, key });
-        return res;
-      }
-    });
-  }
+  let coll = id;
+  let res = await addData(coll, platformName, { id, uname, key });
 }
