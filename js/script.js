@@ -1,6 +1,12 @@
 import { checkDb } from "./readDb.js";
 import { addPasswordHelper } from "./addToDb.js";
 import { getPass } from "./generatorHelper.js";
+import { handleInput } from "./strengthCheck.js";
+import {
+  getAuth,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
+import { addToLocalStorage } from "./addToLocal.js";
 
 const addPasswordButton = document.querySelector(".add-password");
 const addPasswordModal = document.querySelector(".add-password-modal");
@@ -21,10 +27,11 @@ const displayField = document.querySelector("#generated-pass");
 const clearIcons = document.querySelectorAll(".clear");
 const generateIcon = document.querySelector(".generate");
 const toggleView = document.querySelector(".toggle-view");
+const logOutBtn = document.querySelector(".logout-btn");
 
 (async () => {
   let obj = JSON.parse(localStorage.getItem("accInfo"));
-  let data = await checkDb(obj.id,obj.accType);
+  let data = await checkDb(obj.id, obj.accType);
   userName.textContent = data.name + `'s`;
 })();
 
@@ -79,6 +86,18 @@ async function addPassword(e) {
   closeModal(e);
 }
 
+function handleLogout() {
+  let auth = getAuth()
+  signOut(auth)
+    .then(() => {
+      addToLocalStorage('accInfo','')
+      location.href = '/'
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
 function openMenu() {
   menu.classList.add("visible");
 }
@@ -92,13 +111,12 @@ function showPass() {
   addPasswordForm["password"].value = pass;
 }
 
-function changeBord(){
-  if(!this.flag) return
+function changeBord() {
+  if (!this.flag) return;
   if (this.value.trim() == "") {
     this.parentElement.classList.add("error");
     this.flag = true;
-  }
-  else{
+  } else {
     this.parentElement.classList.remove("error");
     this.flag = true;
   }
@@ -131,5 +149,6 @@ toggleView &&
     }
   });
 
-unameField && unameField.addEventListener('input',changeBord);
-platformField && platformField.addEventListener('input',changeBord);
+unameField && unameField.addEventListener("input", changeBord);
+platformField && platformField.addEventListener("input", changeBord);
+logOutBtn && logOutBtn.addEventListener("click", handleLogout);

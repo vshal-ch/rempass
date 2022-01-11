@@ -10,6 +10,7 @@ import {
 import {
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
 import { openModal } from "./script.js";
 
